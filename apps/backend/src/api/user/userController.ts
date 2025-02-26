@@ -1,4 +1,4 @@
-import {client} from "@repo/db";
+import {client} from "@repo/db/client";
 import { Request,Response } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";

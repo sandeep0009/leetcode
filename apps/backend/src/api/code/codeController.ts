@@ -1,7 +1,7 @@
 
 import {Request,Response} from 'express';
-import {client} from '@repo/db';
 import { redisClient } from '../../redis';
+import { client }  from '@repo/db/client';
 
 
 export const allCodes=async(req:Request,res:Response):Promise<any>=>{
