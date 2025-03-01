@@ -5,7 +5,7 @@ import { client }  from '@repo/db/client';
 
 
 export const allCodes=async(req:Request,res:Response):Promise<any>=>{
-    const codes=await client.code.findMany();
+    const codes=await client.problem.findMany();
     return res.status(200).json({
         codes
     });
