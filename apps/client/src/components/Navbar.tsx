@@ -1,5 +1,4 @@
-"use client"
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Menu, X } from 'lucide-react';
 
@@ -36,7 +35,7 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <div className={`flex items-center ${isScrolled ? 'text-blue-600' : 'text-white'}`}>
+            <div className={`flex items-center ${isScrolled ? 'text-primary-600' : 'text-white'}`}>
               <Code2 className="h-8 w-8 mr-2" />
               <span className="text-xl font-bold">CodeMaster</span>
             </div>
@@ -47,7 +46,7 @@ const Navbar = () => {
               <motion.a
                 key={item}
                 href="#"
-                className={`font-medium hover:text-blue-500 transition-colors ${
+                className={`font-medium hover:text-primary-500 transition-colors ${
                   isScrolled ? 'text-gray-700' : 'text-white'
                 }`}
                 initial={{ opacity: 0, y: -10 }}
@@ -66,7 +65,7 @@ const Navbar = () => {
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                 isScrolled 
                   ? 'text-gray-700 hover:text-primary-600' 
-                  : 'text-white hover:text-blue-200'
+                  : 'text-white hover:text-primary-200'
               }`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -77,18 +76,18 @@ const Navbar = () => {
               Log In
             </motion.button>
             <motion.button
-                className={`px-4 py-2 rounded-lg font-medium ${
-                  isScrolled 
-                    ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                    : 'bg-white text-primary-600 hover:bg-gray-100'
-                } transition-colors`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.7 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Sign Up
+              className={`px-4 py-2 rounded-lg font-medium ${
+                isScrolled 
+                  ? 'bg-primary-600 text-white hover:bg-primary-700' 
+                  : 'bg-white text-primary-600 hover:bg-gray-100'
+              } transition-colors`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Sign Up
             </motion.button>
           </div>
           
@@ -102,6 +101,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      
+      {/* Mobile menu */}
       {isMobileMenuOpen && (
         <motion.div 
           className="md:hidden bg-white shadow-lg"
@@ -114,7 +115,7 @@ const Navbar = () => {
               <a
                 key={item}
                 href="#"
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50"
               >
                 {item}
               </a>
@@ -122,7 +123,7 @@ const Navbar = () => {
             <div className="pt-4 flex flex-col space-y-2">
               <a
                 href="#"
-                className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50"
               >
                 Log In
               </a>
