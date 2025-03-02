@@ -28,7 +28,17 @@ export const executeCode=async(obj: Pick<CodeType, "code" | "language">)=>{
           ],
         }),
       });
-      const data = await res.json();
-      return data;
+      const data=await res.json();
+      if (data.run.code !== 0) {
+        return {
+          status: "error",
+          message: data.run.stderr,
+        };
+      }
+    
+      return {
+        status: "success",
+        message: data.run.stdout,
+      };
 };
 

@@ -10,7 +10,6 @@ type ProblemDetailProps = {
 };
 
 export const LeftSide = ({ problemDetail }: ProblemDetailProps) => {
-    console.log(problemDetail);
     const handleColor = (difficulty: string) => {
         switch (difficulty) {
             case "Easy":

@@ -57,11 +57,12 @@ function ProblemDetail() {
   };
 
   const handleRunCode = () => {
+    console.log("Running Code for Language:", language);
     setRunFetching(true);
   };
   
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen mt-10">
       <div className="w-1/2 p-6 bg-white border-r border-gray-300">
         <LeftSide problemDetail={problemDetail} />
       </div>
@@ -92,7 +93,8 @@ function ProblemDetail() {
           </button>
         </div>
 
-        <EditorInstance langage={language} value={userInputLang} changeValue={handleCodeChange} />
+        <EditorInstance langage={language} value={userInputLang[language]} changeValue={handleCodeChange} />
+
 
         {showExecution && (
           <CodeExecution
