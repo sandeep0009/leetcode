@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EditorInstance } from "../../components/Editor";
 import { LeftSide } from "../../components/LeftSide";
+import { CodeExecution } from "../../components/CodeExecution";
 
 function ProblemDetail() {
   const [language, setLanguage] = useState<"cpp" | "java" | "python" | "javascript">("cpp");
+  const [showExecution, setShowExecution] = useState(false);
+  const [runFetching, setRunFetching] = useState<boolean>(false);
+  useEffect(() => {
+    runFetching && setShowExecution(true);
+  }, [runFetching]);
+  
 
   return (
     <div className="flex h-screen">
@@ -28,6 +35,16 @@ function ProblemDetail() {
           </select>
         </div>
         <EditorInstance  langage={language} />
+
+        {showExecution && (
+          <CodeExecution
+            value={userInputLang[language]}
+            language={language}
+            setRunFetching={setRunFetching}
+            testCases={details.testCases.map((i:string)=>JSON.parse(i))}
+            setShowExecution={setShowExecution}
+          />
+        )}
       </div>
     </div>
   );
