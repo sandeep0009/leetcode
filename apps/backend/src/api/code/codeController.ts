@@ -13,7 +13,7 @@ export const allCodes=async(req:Request,res:Response):Promise<any>=>{
 
 export const codeById=async(req:Request,res:Response):Promise<any>=>{
     const {id}=req.params;
-    const code=await client.code.findUnique({
+    const code=await client.problem.findUnique({
         where:{
             id:id
         }

@@ -20,10 +20,16 @@ import {
 import { testimonials } from '../Helper/testimonial';
 import ProblemCard from '../components/ProblemCard';
 import { problems } from '../Helper/problem';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard(){
     const [activeTab, setActiveTab] = useState('all');
+    const router=useNavigate();
 
+    const handleSignUp = () => {
+        router('/signup');
+        console.log('clicked')
+    }
     return(
         <div className="min-h-screen bg-gray-50">
         <Navbar />
@@ -352,6 +358,7 @@ function Dashboard(){
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="px-8 py-4 bg-white text-primary-700 font-semibold rounded-lg shadow-lg hover:shadow-xl transition duration-300 flex items-center justify-center"
+                    onClick={handleSignUp}
                   >
                     Sign Up Free <Rocket className="ml-2 h-5 w-5" />
                   </motion.button>
