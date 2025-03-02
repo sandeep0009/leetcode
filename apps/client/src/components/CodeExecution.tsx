@@ -42,8 +42,9 @@ export const CodeExecution = (
 
 
     useEffect(() => {
+        if (!Array.isArray(testCases)) return;
         setTestCaseConfig(
-          testCases.map((_, index) => {
+          testCases?.map((_, index) => {
             return {
               input: testCases[index].input,
               output: testCases[index].output,
@@ -162,7 +163,7 @@ export const CodeExecution = (
                 })
               : null}
           </div>
-          {testCases.length ? (
+          {testCases.length > 0 && show - 1 < testCases.length && testCases[show - 1] ? (
             show ? (
               <div className="my-5">
                 <div className="flex flex-col">
