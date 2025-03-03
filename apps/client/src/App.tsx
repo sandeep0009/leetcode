@@ -7,6 +7,7 @@ import SignUp from "./pages/SignUp";
 import Problems from "./pages/Problems/Problems";
 import ProblemDetail from "./pages/Problems/ProblemDetail";
 import Layout from "./components/Layout";
+import { PrivateRoute } from "./components/PriavteRoute";
 
 
 function App() {
@@ -18,8 +19,8 @@ function App() {
         <Route index element={<Dashboard/>}/>
         <Route path="/signin" element={<SignIn/>}/>
         <Route path="/signup" element={<SignUp/>}/>
-        <Route path="/problems" element={<Problems/>}/>
-        <Route path="/problem/:id" element={<ProblemDetail/>}/>
+        <Route path="/problems" element={<PrivateRoute component={<Problems/>}/>}/>
+        <Route path="/problem/:id" element={<PrivateRoute component={<ProblemDetail/>}/>}/>
         </Route>
 
       </Routes>
