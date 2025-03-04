@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { axiosInstance } from "../Helper/axios";
+import {userSignInSchema} from "@repo/types-common/types";
 
 const SignIn: React.FC = () => {
+  const [email,setEmail]=useState('');
+  const [password,setPassword]=useState('');
+  const navigate=useNavigate();
+  const handleLogin=async()=>{
+    try {
+      const parsedData=await userSignInSchema.safeParse({email,password});
+      if(!parsedData.success){
+        console.log(parsedData.error);
+        return;
+      }
+
+      const res=await axiosInstance.post('/signin',{
+        email,
+        password
+      });
+      if(res.status===200){
+        localStorage.setItem('token',res.data.token);
+        navigate('/problems');
+
+      }
+      
+    } catch (error) {
+      console.log(error)
+      
+    }
+  }
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 p-4">
       <motion.div
@@ -19,15 +47,18 @@ const SignIn: React.FC = () => {
             type="email"
             placeholder="Email"
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            onChange={(e)=>setEmail(e.target.value)}
           />
           <input
             type="password"
             placeholder="Password"
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            onChange={(e)=>setPassword(e.target.value)}
           />
           <button
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition duration-300"
+            onClick={handleLogin}
           >
             Sign In
           </button>
