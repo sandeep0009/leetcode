@@ -1,0 +1,17 @@
+FROM node:20-alpine
+
+WORKDIR /urs/src/app
+
+RUN npm install -g pnpm
+
+COPY /packages ./packages
+COPY /pnpm-lock.yaml ./pnpm-lock.yaml
+COPY /package.json ./package.json
+
+
+RUN pnpm install
+COPY . .
+
+RUN pnpm run build
+EXPOSE 4001
+CMD ["pnpm","run","start:backend"]
